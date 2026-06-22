@@ -14,6 +14,7 @@ BuildRequires:	golang
 
 Requires:	greetd
 Requires:	kitty
+Requires: (hyprland or niri or sway)
 
 %description
 A graphical console greeter for greetd.
