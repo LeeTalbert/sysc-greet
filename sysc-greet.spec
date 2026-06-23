@@ -12,9 +12,10 @@ License:	GPL-3.0-only
 
 BuildRequires:	golang
 
-Requires:	greetd
-Requires:	kitty
-Requires: (hyprland or niri or sway)
+Requires:  greetd
+Requires:  gslapper
+Requires:  kitty
+Requires:  (hyprland or niri or sway)
 
 %description
 A graphical console greeter for greetd.
