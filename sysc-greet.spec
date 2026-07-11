@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:		sysc-greet
-Version:	1.1.7
+Version:	1.1.8
 Release:	1
 Source0:	https://github.com/Nomadcxx/sysc-greet/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	%{name}-%{version}-vendor.tar.xz
@@ -14,7 +14,7 @@ BuildRequires:	golang
 
 Requires:  greetd
 Requires:  kitty
-Requires:  (cage or niri or sway)
+Requires:  (cagebreak or niri or sway or hyprland)
 
 %description
 A graphical console greeter for greetd.
@@ -40,12 +40,9 @@ cp -r wallpapers %{buildroot}%{_datadir}/%{name}/
 ## install polkit rule to allow shutdown & reboot from greeter
 install  -Dm644 config/85-greeter.rules %{buildroot}%{_sysconfdir}/polkit-1/rules.d/85-greeter.rules
 
-## install config, user must edit /etc/greetd/config.toml to use their preferred WM
+## install greetd configs
 mkdir -p %{buildroot}%{_sysconfdir}/greetd
-cp config/kitty-greeter.conf %{buildroot}%{_sysconfdir}/greetd/
-cp config/hyprland-greeter-config.conf %{buildroot}%{_sysconfdir}/greetd/
-cp config/niri-greeter-config.kdl %{buildroot}%{_sysconfdir}/greetd/
-cp config/sway-greeter-config %{buildroot}%{_sysconfdir}/greetd/
+cp config/* %{buildroot}%{_sysconfdir}/greetd/
 
 ## create other necessary directories
 mkdir -p %{buildroot}/var/lib/greeter/Pictures/wallpapers
