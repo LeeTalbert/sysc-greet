@@ -8,13 +8,14 @@ Source1:	%{name}-%{version}-vendor.tar.xz
 Summary:	A graphical console greeter for greetd
 URL:		https://github.com/Nomadcxx/sysc-greet
 License:	GPL-3.0-only
-#Group:
+Group:		System/Management
 
 BuildRequires:	golang
 
-Requires:  greetd
-Requires:  kitty
-Requires:  (cagebreak or niri or sway or hyprland)
+Requires:	greetd
+Requires:	kitty
+Requires:	(hyprland or niri or sway or cagebreak)
+Recommends:	gslapper
 
 %description
 A graphical console greeter for greetd.
@@ -42,7 +43,11 @@ install  -Dm644 config/85-greeter.rules %{buildroot}%{_sysconfdir}/polkit-1/rule
 
 ## install greetd configs
 mkdir -p %{buildroot}%{_sysconfdir}/greetd
-cp config/* %{buildroot}%{_sysconfdir}/greetd/
+cp config/kitty-greeter.conf %{buildroot}%{_sysconfdir}/greetd/
+cp config/hyprland-greeter-config.conf %{buildroot}%{_sysconfdir}/greetd/
+cp config/niri-greeter-config.kdl %{buildroot}%{_sysconfdir}/greetd/
+cp config/sway-greeter-config %{buildroot}%{_sysconfdir}/greetd/
+cp config/cagebreak-greeter-config %{buildroot}%{_sysconfdir}/greetd/
 
 ## create other necessary directories
 mkdir -p %{buildroot}/var/lib/greeter/Pictures/wallpapers
